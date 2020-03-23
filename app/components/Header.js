@@ -1,24 +1,24 @@
 import React, { PropTypes, Component } from 'react';
-import TodoTextInput from './TodoTextInput';
+import WordTextInput from './WordTextInput';
 
 export default class Header extends Component {
 
   static propTypes = {
-    addTodo: PropTypes.func.isRequired
+    addWord: PropTypes.func.isRequired
   };
 
   handleSave = (text) => {
     if (text.length !== 0) {
-      this.props.addTodo(text);
+      this.props.addWord(text);
     }
   };
 
   render() {
     return (
       <header>
-        <h1>todos</h1>
-        <TodoTextInput
-          newTodo
+        <h1>words</h1>
+        <WordTextInput
+          newWord
           onSave={this.handleSave}
           placeholder="What needs to be done?"
         />

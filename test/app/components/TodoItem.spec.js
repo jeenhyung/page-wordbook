@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import TodoItem from '../../../app/components/TodoItem';
+import TodoItem from '../../../app/components/WordItem';
 import style from '../../../app/components/TodoItem.css';
-import TodoTextInput from '../../../app/components/TodoTextInput';
+import TodoTextInput from '../../../app/components/WordTextInput';
 
 function setup(editing = false) {
   const props = {
@@ -13,9 +13,9 @@ function setup(editing = false) {
       text: 'Use Redux',
       completed: false
     },
-    editTodo: sinon.spy(),
-    deleteTodo: sinon.spy(),
-    completeTodo: sinon.spy()
+    editWrod: sinon.spy(),
+    deleteWord: sinon.spy(),
+    completeWord: sinon.spy()
   };
 
   const renderer = TestUtils.createRenderer();
@@ -33,7 +33,7 @@ function setup(editing = false) {
   return { props, output, renderer };
 }
 
-describe('todoapp TodoItem component', () => {
+describe('wordapp TodoItem component', () => {
   it('should render correctly', () => {
     const { output } = setup();
 
@@ -57,18 +57,18 @@ describe('todoapp TodoItem component', () => {
     expect(button.props.className).to.equal(style.destroy);
   });
 
-  it('input onChange should call completeTodo', () => {
+  it('input onChange should call completeWord', () => {
     const { output, props } = setup();
     const input = output.props.children.props.children[0];
     input.props.onChange({});
-    expect(props.completeTodo.calledWith(0)).to.equal(true);
+    expect(props.completeWord.calledWith(0)).to.equal(true);
   });
 
-  it('button onClick should call deleteTodo', () => {
+  it('button onClick should call deleteWord', () => {
     const { output, props } = setup();
     const button = output.props.children.props.children[2];
     button.props.onClick({});
-    expect(props.deleteTodo.calledWith(0)).to.equal(true);
+    expect(props.deleteWord.calledWith(0)).to.equal(true);
   });
 
   it('label onDoubleClick should put component in edit state', () => {
@@ -92,16 +92,16 @@ describe('todoapp TodoItem component', () => {
     expect(input.props.editing).to.equal(true);
   });
 
-  it('TodoTextInput onSave should call editTodo', () => {
+  it('TodoTextInput onSave should call editWrod', () => {
     const { output, props } = setup(true);
     output.props.children.props.onSave('Use Redux');
-    expect(props.editTodo.calledWith(0, 'Use Redux')).to.equal(true);
+    expect(props.editWrod.calledWith(0, 'Use Redux')).to.equal(true);
   });
 
-  it('TodoTextInput onSave should call deleteTodo if text is empty', () => {
+  it('TodoTextInput onSave should call deleteWord if text is empty', () => {
     const { output, props } = setup(true);
     output.props.children.props.onSave('');
-    expect(props.deleteTodo.calledWith(0)).to.equal(true);
+    expect(props.deleteWord.calledWith(0)).to.equal(true);
   });
 
   it('TodoTextInput onSave should exit component from edit state', () => {

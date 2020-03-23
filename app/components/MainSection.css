@@ -4,39 +4,39 @@
   border-top: 1px solid #e6e6e6;
 }
 
-.todoList {
+.wordList {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.todoList li {
+.wordList li {
   position: relative;
   font-size: 24px;
   border-bottom: 1px solid #ededed;
 }
 
-.todoList li:last-child {
+.wordList li:last-child {
   border-bottom: none;
 }
 
-.todoList li.editing {
+.wordList li.editing {
   border-bottom: none;
   padding: 0;
 }
 
-.todoList li.editing .edit {
+.wordList li.editing .edit {
   display: block;
   width: 506px;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
 }
 
-.todoList li.editing .view {
+.wordList li.editing .view {
   display: none;
 }
 
-.todoList li .toggle {
+.wordList li .toggle {
   text-align: center;
   width: 40px;
   /* auto, since non-WebKit browsers doesn't support input styling */
@@ -50,15 +50,15 @@
   -moz-appearance: none;
 }
 
-.todoList li .toggle:after {
+.wordList li .toggle:after {
   content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
 }
 
-.todoList li .toggle:checked:after {
+.wordList li .toggle:checked:after {
   content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
 
-.todoList li label {
+.wordList li label {
   white-space: pre-line;
   word-break: break-all;
   padding: 15px 60px 15px 15px;
@@ -68,12 +68,12 @@
   transition: color 0.4s;
 }
 
-.todoList li.completed label {
+.wordList li.completed label {
   color: #d9d9d9;
   text-decoration: line-through;
 }
 
-.todoList li .destroy {
+.wordList li .destroy {
   display: none;
   position: absolute;
   top: 0;
@@ -88,23 +88,23 @@
   transition: color 0.2s ease-out;
 }
 
-.todoList li .destroy:hover {
+.wordList li .destroy:hover {
   color: #af5b5e;
 }
 
-.todoList li .destroy:after {
+.wordList li .destroy:after {
   content: '×';
 }
 
-.todoList li:hover .destroy {
+.wordList li:hover .destroy {
   display: block;
 }
 
-.todoList li .edit {
+.wordList li .edit {
   display: none;
 }
 
-.todoList li.editing:last-child {
+.wordList li.editing:last-child {
   margin-bottom: -1px;
 }
 
@@ -135,11 +135,11 @@
 */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   .toggleAll,
-  .todoList li .toggle {
+  .wordList li .toggle {
     background: none;
   }
 
-  .todoList li .toggle {
+  .wordList li .toggle {
     height: 40px;
   }
 

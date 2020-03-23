@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/WordFilters';
 import style from './Footer.css';
 
 const FILTERS = [SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED];
@@ -33,12 +33,12 @@ export default class Footer extends Component {
     }
   }
 
-  renderTodoCount() {
+  renderwordCount() {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';
 
     return (
-      <span className={style.todoCount}>
+      <span className={style.wordCount}>
         <strong>{activeCount || 'No'}</strong> {itemWord} left
       </span>
     );
@@ -76,7 +76,7 @@ export default class Footer extends Component {
   render() {
     return (
       <footer className={style.footer}>
-        {this.renderTodoCount()}
+        {this.renderwordCount()}
         <ul className={style.filters}>
           {FILTERS.map((filter, i) =>
             <li key={filter}>

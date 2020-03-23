@@ -3,11 +3,11 @@ import sinon from 'sinon';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Header from '../../../app/components/Header';
-import TodoTextInput from '../../../app/components/TodoTextInput';
+import TodoTextInput from '../../../app/components/WordTextInput';
 
 function setup() {
   const props = {
-    addTodo: sinon.spy()
+    addWord: sinon.spy()
   };
 
   const renderer = TestUtils.createRenderer();
@@ -17,7 +17,7 @@ function setup() {
   return { props, output, renderer };
 }
 
-describe('todoapp Header component', () => {
+describe('wordapp Header component', () => {
   it('should render correctly', () => {
     const { output } = setup();
 
@@ -33,12 +33,12 @@ describe('todoapp Header component', () => {
     expect(input.props.placeholder).to.equal('What needs to be done?');
   });
 
-  it('should call addTodo if length of text is greater than 0', () => {
+  it('should call addWord if length of text is greater than 0', () => {
     const { output, props } = setup();
     const input = output.props.children[1];
     input.props.onSave('');
-    expect(props.addTodo.callCount).to.equal(0);
+    expect(props.addWord.callCount).to.equal(0);
     input.props.onSave('Use Redux');
-    expect(props.addTodo.callCount).to.equal(1);
+    expect(props.addWord.callCount).to.equal(1);
   });
 });

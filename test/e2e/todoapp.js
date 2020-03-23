@@ -13,7 +13,7 @@ const extensionName = manifest.name;
 const findList = driver =>
   driver.findElements(webdriver.By.css(`.${mainSectionStyle.todoList} > li`));
 
-const addTodo = async (driver, key) => {
+const addWord = async (driver, key) => {
   // add todo
   driver.findElement(webdriver.By.className(todoTextInputStyle.new))
     .sendKeys(key + webdriver.Key.RETURN);
@@ -22,7 +22,7 @@ const addTodo = async (driver, key) => {
   return { todo: todos[0], count: todos.length };
 };
 
-const editTodo = async (driver, index, key) => {
+const editWrod = async (driver, index, key) => {
   let todos = await findList(driver);
   const label = todos[index].findElement(webdriver.By.tagName('label'));
   // dbl click to enable textarea
@@ -36,7 +36,7 @@ const editTodo = async (driver, index, key) => {
   return { todo: todos[index], count: todos.length };
 };
 
-const completeTodo = async (driver, index) => {
+const completeWord = async (driver, index) => {
   let todos = await findList(driver);
   todos[index].findElement(webdriver.By.className(todoItemStyle.toggle)).click();
   await delay(1000);
@@ -44,7 +44,7 @@ const completeTodo = async (driver, index) => {
   return { todo: todos[index], count: todos.length };
 };
 
-const deleteTodo = async (driver, index) => {
+const deleteWord = async (driver, index) => {
   let todos = await findList(driver);
   driver.executeScript(
     `document.querySelectorAll('.${mainSectionStyle.todoList} > li')[${index}]
@@ -81,21 +81,21 @@ describe('window (popup) page', function test() {
   });
 
   it('should can add todo', async () => {
-    const { todo, count } = await addTodo(driver, 'Add tests');
+    const { todo, count } = await addWord(driver, 'Add tests');
     expect(count).to.equal(2);
     const text = await todo.findElement(webdriver.By.tagName('label')).getText();
     expect(text).to.equal('Add tests');
   });
 
   it('should can edit todo', async () => {
-    const { todo, count } = await editTodo(driver, 0, 'Ya ');
+    const { todo, count } = await editWrod(driver, 0, 'Ya ');
     expect(count).to.equal(2);
     const text = await todo.findElement(webdriver.By.tagName('label')).getText();
     expect(text).to.equal('Ya Add tests');
   });
 
   it('should can complete todo', async () => {
-    const { todo, count } = await completeTodo(driver, 0);
+    const { todo, count } = await completeWord(driver, 0);
     expect(count).to.equal(2);
     const className = await todo.getAttribute('class');
     const { completed, normal } = todoItemStyle;
@@ -111,17 +111,17 @@ describe('window (popup) page', function test() {
   });
 
   it('should can delete todo', async () => {
-    const { count } = await deleteTodo(driver, 0);
+    const { count } = await deleteWord(driver, 0);
     expect(count).to.equal(1);
   });
 
   it('should can clear completed todos if completed todos count > 0', async () => {
     // current todo count: 1
-    await addTodo(driver, 'Add 1');
-    const { count } = await addTodo(driver, 'Add 2');
+    await addWord(driver, 'Add 1');
+    const { count } = await addWord(driver, 'Add 2');
     expect(count).to.equal(3);
 
-    await completeTodo(driver, 0);
+    await completeWord(driver, 0);
     driver.findElement(webdriver.By.className(footerStyle.clearCompleted)).click();
 
     const todos = await findList(driver);
@@ -136,11 +136,11 @@ describe('window (popup) page', function test() {
 
   it('should can filter active todos', async () => {
     // current todo count: 2
-    await addTodo(driver, 'Add 1');
-    const { count } = await addTodo(driver, 'Add 2');
+    await addWord(driver, 'Add 1');
+    const { count } = await addWord(driver, 'Add 2');
     expect(count).to.equal(3);
 
-    await completeTodo(driver, 0);
+    await completeWord(driver, 0);
     let todos = await driver.findElements(webdriver.By.css(`.${footerStyle.filters} > li`));
     todos[1].click();
     await delay(1000);

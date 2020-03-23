@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import style from './TodoTextInput.css';
+import style from './WordTextInput.css';
 
-export default class TodoTextInput extends Component {
+export default class WordTextInput extends Component {
 
   static propTypes = {
     onSave: PropTypes.func.isRequired,
     text: PropTypes.string,
     placeholder: PropTypes.string,
     editing: PropTypes.bool,
-    newTodo: PropTypes.bool
+    newWord: PropTypes.bool
   };
 
   constructor(props, context) {
@@ -23,7 +23,7 @@ export default class TodoTextInput extends Component {
     const text = evt.target.value.trim();
     if (evt.which === 13) {
       this.props.onSave(text);
-      if (this.props.newTodo) {
+      if (this.props.newWord) {
         this.setState({ text: '' });
       }
     }
@@ -34,7 +34,7 @@ export default class TodoTextInput extends Component {
   };
 
   handleBlur = (evt) => {
-    if (!this.props.newTodo) {
+    if (!this.props.newWord) {
       this.props.onSave(evt.target.value);
     }
   };
@@ -44,7 +44,7 @@ export default class TodoTextInput extends Component {
       <input
         className={classnames({
           [style.edit]: this.props.editing,
-          [style.new]: this.props.newTodo
+          [style.new]: this.props.newWord
         })}
         type="text"
         placeholder={this.props.placeholder}

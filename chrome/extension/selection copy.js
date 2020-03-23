@@ -41,7 +41,7 @@ chrome.runtime.sendMessage({greeting: 'backgroundhello'}, (response) => {
   // })
 });
 
-// 메시지 리스너 from todoapp.js
+// 메시지 리스너 from wordapp.js
 chrome.runtime.onMessage.addListener(
   (request, sender, sendResponse) => {
     console.log('[contentscript] chrome.runtime.onMessage.addListener()');

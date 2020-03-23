@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import * as types from '../../../app/constants/ActionTypes';
-import todos from '../../../app/reducers/todos';
+import todos from '../../../app/reducers/words';
 
-describe('todoapp todos reducer', () => {
+describe('wordapp todos reducer', () => {
   it('should handle initial state', () => {
     expect(
       todos(undefined, {})
@@ -13,10 +13,10 @@ describe('todoapp todos reducer', () => {
     }]);
   });
 
-  it('should handle ADD_TODO', () => {
+  it('should handle ADD_WORD', () => {
     expect(
       todos([], {
-        type: types.ADD_TODO,
+        type: types.ADD_WORD,
         text: 'Run the tests'
       })
     ).to.eql([{
@@ -31,7 +31,7 @@ describe('todoapp todos reducer', () => {
         completed: false,
         id: 0
       }], {
-        type: types.ADD_TODO,
+        type: types.ADD_WORD,
         text: 'Run the tests'
       })
     ).to.eql([{
@@ -54,7 +54,7 @@ describe('todoapp todos reducer', () => {
         completed: false,
         id: 0
       }], {
-        type: types.ADD_TODO,
+        type: types.ADD_WORD,
         text: 'Fix the tests'
       })
     ).to.eql([{
@@ -72,7 +72,7 @@ describe('todoapp todos reducer', () => {
     }]);
   });
 
-  it('should handle DELETE_TODO', () => {
+  it('should handle DELETE_WORD', () => {
     expect(
       todos([{
         text: 'Run the tests',
@@ -83,7 +83,7 @@ describe('todoapp todos reducer', () => {
         completed: false,
         id: 0
       }], {
-        type: types.DELETE_TODO,
+        type: types.DELETE_WORD,
         id: 1
       })
     ).to.eql([{
@@ -93,7 +93,7 @@ describe('todoapp todos reducer', () => {
     }]);
   });
 
-  it('should handle EDIT_TODO', () => {
+  it('should handle EDIT_WORD', () => {
     expect(
       todos([{
         text: 'Run the tests',
@@ -104,7 +104,7 @@ describe('todoapp todos reducer', () => {
         completed: false,
         id: 0
       }], {
-        type: types.EDIT_TODO,
+        type: types.EDIT_WORD,
         text: 'Fix the tests',
         id: 1
       })
@@ -119,7 +119,7 @@ describe('todoapp todos reducer', () => {
     }]);
   });
 
-  it('should handle COMPLETE_TODO', () => {
+  it('should handle COMPLETE_WORD', () => {
     expect(
       todos([{
         text: 'Run the tests',
@@ -130,7 +130,7 @@ describe('todoapp todos reducer', () => {
         completed: false,
         id: 0
       }], {
-        type: types.COMPLETE_TODO,
+        type: types.COMPLETE_WORD,
         id: 1
       })
     ).to.eql([{
@@ -214,12 +214,12 @@ describe('todoapp todos reducer', () => {
   it('should not generate duplicate ids after CLEAR_COMPLETED', () => {
     expect(
       [{
-        type: types.COMPLETE_TODO,
+        type: types.COMPLETE_WORD,
         id: 0
       }, {
         type: types.CLEAR_COMPLETED
       }, {
-        type: types.ADD_TODO,
+        type: types.ADD_WORD,
         text: 'Write more tests'
       }].reduce(todos, [{
         id: 0,

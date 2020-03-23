@@ -4,7 +4,7 @@ function saveState(state) {
 /*
 {
   state : '{
-    todos: [
+    words: [
       {
         id: 0,
         completed: false,
@@ -17,10 +17,10 @@ function saveState(state) {
 
 
 
-// todos unmarked count
-function setBadge(todos) {
+// words unmarked count
+function setBadge(words) {
   if (chrome.browserAction) {
-    const count = todos.filter(todo => !todo.marked).length;
+    const count = words.filter(word => !word.marked).length;
     chrome.browserAction.setBadgeText({ text: count > 0 ? count.toString() : '' });
   }
 }
@@ -30,8 +30,8 @@ export default function () {
     const store = next(reducer, initialState);
     store.subscribe(() => {
       const state = store.getState();
-      saveState(state); // { todos: [...]}
-      setBadge(state.todos);  // [...]
+      saveState(state); // { words: [...]}
+      setBadge(state.words);  // [...]
     });
     return store;
   };

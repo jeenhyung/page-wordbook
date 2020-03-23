@@ -51,24 +51,24 @@ chrome.runtime.onMessage.addListener(
         console.log('[badge] obj: ' + JSON.stringify(obj));
         const state = JSON.parse(obj.state);
         console.log('[badge] state: ' + JSON.stringify(state));
-        if (state.todos) {
+        if (state.words) {
           // 단어 추가
-          const todos = [{
-            id: state.todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+          const words = [{
+            id: state.words.reduce((maxId, word) => Math.max(word.id, maxId), -1) + 1,
             completed: false,
             text: request.selection
-          }, ...state.todos];
+          }, ...state.words];
 
-          chrome.storage.local.set({ state: JSON.stringify({ todos }) });
+          chrome.storage.local.set({ state: JSON.stringify({ words }) });
           
           //뱃지 숫자 변경
-          const len = todos.filter(todo => !todo.marked).length;
+          const len = words.filter(word => !word.marked).length;
           if (len > 0) {
             chrome.browserAction.setBadgeText({ text: len.toString() });
           }
         } else {
-          // first todo
-          chrome.storage.local.set({ state: JSON.stringify({ todos: [{ id: 1, completed: false, text: request.selection }] }) });
+          // first word
+          chrome.storage.local.set({ state: JSON.stringify({ words: [{ id: 1, completed: false, text: request.selection }] }) });
 
           // 뱃지 숫자 변경
           chrome.browserAction.setBadgeText({ text: '1' });

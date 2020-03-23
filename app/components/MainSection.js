@@ -1,19 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import TodoItem from './TodoItem';
+import WordItem from './WordItem';
 import Footer from './Footer';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/WordFilters';
 import style from './MainSection.css';
 
-const TODO_FILTERS = {
+const WORD_FILTERS = {
   [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
+  [SHOW_ACTIVE]: word => !word.completed,
+  [SHOW_COMPLETED]: word => word.completed
 };
 
 export default class MainSection extends Component {
 
   static propTypes = {
-    todos: PropTypes.array.isRequired,
+    words: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
   };
 
@@ -23,7 +23,7 @@ export default class MainSection extends Component {
   }
 
   handleClearCompleted = () => {
-    const atLeastOneCompleted = this.props.todos.some(todo => todo.completed);
+    const atLeastOneCompleted = this.props.words.some(word => word.completed);
     if (atLeastOneCompleted) {
       this.props.actions.clearCompleted();
     }
@@ -34,13 +34,13 @@ export default class MainSection extends Component {
   };
 
   renderToggleAll(completedCount) {
-    const { todos, actions } = this.props;
-    if (todos.length > 0) {
+    const { words, actions } = this.props;
+    if (words.length > 0) {
       return (
         <input
           className={style.toggleAll}
           type="checkbox"
-          checked={completedCount === todos.length}
+          checked={completedCount === words.length}
           onChange={actions.completeAll}
         />
       );
@@ -48,11 +48,11 @@ export default class MainSection extends Component {
   }
 
   renderFooter(completedCount) {
-    const { todos } = this.props;
+    const { words } = this.props;
     const { filter } = this.state;
-    const activeCount = todos.length - completedCount;
+    const activeCount = words.length - completedCount;
 
-    if (todos.length) {
+    if (words.length) {
       return (
         <Footer
           completedCount={completedCount}
@@ -66,21 +66,21 @@ export default class MainSection extends Component {
   }
 
   render() {
-    const { todos, actions } = this.props;
+    const { words, actions } = this.props;
     const { filter } = this.state;
 
-    const filteredTodos = todos.filter(TODO_FILTERS[filter]);
-    const completedCount = todos.reduce(
-      (count, todo) => (todo.completed ? count + 1 : count),
+    const filteredWords = words.filter(WORD_FILTERS[filter]);
+    const completedCount = words.reduce(
+      (count, word) => (word.completed ? count + 1 : count),
       0
     );
 
     return (
       <section className={style.main}>
         {this.renderToggleAll(completedCount)}
-        <ul className={style.todoList}>
-          {filteredTodos.map(todo =>
-            <TodoItem key={todo.id} todo={todo} {...actions} />
+        <ul className={style.wordList}>
+          {filteredWords.map(word =>
+            <WordItem key={word.id} word={word} {...actions} />
           )}
         </ul>
         {this.renderFooter(completedCount)}

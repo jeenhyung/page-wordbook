@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import TodoTextInput from './TodoTextInput';
-import style from './TodoItem.css';
+import WordTextInput from './WordTextInput';
+import style from './WordItem.css';
 
-export default class TodoItem extends Component {
+export default class WordItem extends Component {
 
   static propTypes = {
-    todo: PropTypes.object.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    completeTodo: PropTypes.func.isRequired
+    word: PropTypes.object.isRequired,
+    editWrod: PropTypes.func.isRequired,
+    deleteWord: PropTypes.func.isRequired,
+    completeWord: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -24,33 +24,33 @@ export default class TodoItem extends Component {
   };
 
   handleSave = (text) => {
-    const { todo, deleteTodo, editTodo } = this.props;
+    const { word, deleteWord, editWrod } = this.props;
     if (text.length === 0) {
-      deleteTodo(todo.id);
+      deleteWord(word.id);
     } else {
-      editTodo(todo.id, text);
+      editWrod(word.id, text);
     }
     this.setState({ editing: false });
   };
 
   handleComplete = () => {
-    const { todo, completeTodo } = this.props;
-    completeTodo(todo.id);
+    const { word, completeWord } = this.props;
+    completeWord(word.id);
   };
 
   handleDelete = () => {
-    const { todo, deleteTodo } = this.props;
-    deleteTodo(todo.id);
+    const { word, deleteWord } = this.props;
+    deleteWord(word.id);
   };
 
   render() {
-    const { todo } = this.props;
+    const { word } = this.props;
 
     let element;
     if (this.state.editing) {
       element = (
-        <TodoTextInput
-          text={todo.text}
+        <WordTextInput
+          text={word.text}
           editing={this.state.editing}
           onSave={this.handleSave}
         />
@@ -61,11 +61,11 @@ export default class TodoItem extends Component {
           <input
             className={style.toggle}
             type="checkbox"
-            checked={todo.completed}
+            checked={word.completed}
             onChange={this.handleComplete}
           />
           <label onDoubleClick={this.handleDoubleClick}>
-            {todo.text}
+            {word.text}
           </label>
           <button
             className={style.destroy}
@@ -78,7 +78,7 @@ export default class TodoItem extends Component {
     return (
       <li
         className={classnames({
-          [style.completed]: todo.completed,
+          [style.completed]: word.completed,
           [style.editing]: this.state.editing,
           [style.normal]: !this.state.editing
         })}

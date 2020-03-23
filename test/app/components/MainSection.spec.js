@@ -4,9 +4,9 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import MainSection from '../../../app/components/MainSection';
 import style from '../../../app/components/MainSection.css';
-import TodoItem from '../../../app/components/TodoItem';
+import TodoItem from '../../../app/components/WordItem';
 import Footer from '../../../app/components/Footer';
-import { SHOW_ALL, SHOW_COMPLETED } from '../../../app/constants/TodoFilters';
+import { SHOW_ALL, SHOW_COMPLETED } from '../../../app/constants/WordFilters';
 
 function setup(propOverrides) {
   const props = {
@@ -20,9 +20,9 @@ function setup(propOverrides) {
       id: 1
     }],
     actions: {
-      editTodo: sinon.spy(),
-      deleteTodo: sinon.spy(),
-      completeTodo: sinon.spy(),
+      editWrod: sinon.spy(),
+      deleteWord: sinon.spy(),
+      completeWord: sinon.spy(),
       completeAll: sinon.spy(),
       clearCompleted: sinon.spy()
     },
@@ -36,7 +36,7 @@ function setup(propOverrides) {
   return { props, output, renderer };
 }
 
-describe('todoapp MainSection component', () => {
+describe('wordapp MainSection component', () => {
   it('should render correctly', () => {
     const { output } = setup();
     expect(output.type).to.equal('section');

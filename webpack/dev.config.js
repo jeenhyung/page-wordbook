@@ -10,7 +10,7 @@ const hotScript = 'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPubli
 const baseDevConfig = () => ({
   devtool: 'eval-cheap-module-source-map',
   entry: {
-    todoapp: [customPath, hotScript, path.join(__dirname, '../chrome/extension/todoapp')],
+    wordapp: [customPath, hotScript, path.join(__dirname, '../chrome/extension/wordapp')],
     background: [customPath, hotScript, path.join(__dirname, '../chrome/extension/background')],
     selection: [customPath, hotScript, path.join(__dirname, '../chrome/extension/selection')],
   },
