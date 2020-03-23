@@ -16,7 +16,7 @@ export default class Header extends Component {
   render() {
     return (
       <header>
-        <h1>words</h1>
+        {/* <h1>Page Wordbook</h1> */}
         <WordTextInput
           newWord
           onSave={this.handleSave}
