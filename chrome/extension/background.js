@@ -33,6 +33,22 @@ require('./background/inject');
 require('./background/badge');
 // require('./background/selection');
 
+function dateFormat(date) {
+  return date.getFullYear() + "-" +
+  ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
+  ("00" + date.getDate()).slice(-2) + " " +
+  ("00" + date.getHours()).slice(-2) + ":" +
+  ("00" + date.getMinutes()).slice(-2) + ":" +
+  ("00" + date.getSeconds()).slice(-2);
+}
+
+function isEmpty(obj) {
+  for(var key in obj) {
+      if(obj.hasOwnProperty(key))
+          return false;
+  }
+  return true;
+}
 
 // 메시지 리스너 from selection.js
 chrome.runtime.onMessage.addListener(
@@ -49,6 +65,17 @@ chrome.runtime.onMessage.addListener(
 
       chrome.storage.local.get('state', (obj) => {  // 기존 저장된 리스트 가져오기
         console.log('[badge] obj: ' + JSON.stringify(obj));
+        
+        if (isEmpty(obj)) {
+          const words = [{
+            id: 1,
+            completed: false,
+            text: request.selection
+          }];
+          chrome.storage.local.set({ state: JSON.stringify({ words }) });
+          return;
+        }
+
         const state = JSON.parse(obj.state);
         console.log('[badge] state: ' + JSON.stringify(state));
         if (state.words) {
@@ -56,7 +83,9 @@ chrome.runtime.onMessage.addListener(
           const words = [{
             id: state.words.reduce((maxId, word) => Math.max(word.id, maxId), -1) + 1,
             completed: false,
-            text: request.selection
+            text: request.selection,
+            url: sender.tab.url,
+            created: dateFormat(new Date()),
           }, ...state.words];
 
           chrome.storage.local.set({ state: JSON.stringify({ words }) });

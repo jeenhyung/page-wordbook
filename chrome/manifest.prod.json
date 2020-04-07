@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "page-wordbook",
   "manifest_version": 2,
   "description": "Page wordbook for chrome-extension",
@@ -18,7 +18,7 @@
   "background": {
     "page": "background.html"
   },
-  "permissions": [ "contextMenus", "tabs", "storage", "https://*/*", "http://*/*", "activeTab" ],
+  "permissions": [ "contextMenus", "storage", "https://*/*", "http://*/*", "activeTab" ],
   "content_security_policy": "default-src 'self'; script-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;",
   "content_scripts": [
     {

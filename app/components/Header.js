@@ -7,9 +7,9 @@ export default class Header extends Component {
     addWord: PropTypes.func.isRequired
   };
 
-  handleSave = (text) => {
+  handleSave = (text, url = '') => {
     if (text.length !== 0) {
-      this.props.addWord(text);
+      this.props.addWord(text, url);
     }
   };
 
@@ -19,8 +19,10 @@ export default class Header extends Component {
         {/* <h1>Page Wordbook</h1> */}
         <WordTextInput
           newWord
+          newUrl
           onSave={this.handleSave}
-          placeholder="What needs to be done?"
+          wordplaceholder="input text everything."
+          urlplaceholder="input url (optional)"
         />
       </header>
     );

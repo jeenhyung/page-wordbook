@@ -1,9 +1,20 @@
 import * as ActionTypes from '../constants/ActionTypes';
 
+function dateFormat(date) {
+  return date.getFullYear() + "-" +
+  ("00" + (date.getMonth() + 1)).slice(-2) + "-" +
+  ("00" + date.getDate()).slice(-2) + " " +
+  ("00" + date.getHours()).slice(-2) + ":" +
+  ("00" + date.getMinutes()).slice(-2) + ":" +
+  ("00" + date.getSeconds()).slice(-2);
+}
+
 const initialState = [{
   text: 'Welcome',
   completed: false,
-  id: 0
+  id: 0,
+  url: '',
+  created: dateFormat(new Date()),
 }];
 
 const actionsMap = {
@@ -11,7 +22,9 @@ const actionsMap = {
     return [{
       id: state.reduce((maxId, word) => Math.max(word.id, maxId), -1) + 1,
       completed: false,
-      text: action.text
+      text: action.text,
+      url: action.url,
+      created: dateFormat(new Date()),
     }, ...state];
   },
   [ActionTypes.DELETE_WORD](state, action) {

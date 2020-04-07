@@ -75,17 +75,19 @@ export default class Footer extends Component {
 
   render() {
     return (
-      <footer className={style.footer}>
-        {this.renderwordCount()}
-        <ul className={style.filters}>
-          {FILTERS.map((filter, i) =>
-            <li key={filter}>
-              {this.renderFilterLink(filter, this.filterHandlers[i])}
-            </li>
-          )}
-        </ul>
-        {this.renderClearButton()}
-      </footer>
+      <div>
+        <footer className={style.footer}>
+          {this.renderwordCount()}
+          <ul className={style.filters}>
+            {FILTERS.map((filter, i) =>
+              <li key={filter}>
+                {this.renderFilterLink(filter, this.filterHandlers[i])}
+              </li>
+            )}
+          </ul>
+          {this.renderClearButton()}
+        </footer>
+      </div>
     );
   }
 }

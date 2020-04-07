@@ -77,13 +77,13 @@ export default class MainSection extends Component {
 
     return (
       <section className={style.main}>
-        {this.renderToggleAll(completedCount)}
+        {/* {this.renderToggleAll(completedCount)} */}
         <ul className={style.wordList}>
           {filteredWords.map(word =>
             <WordItem key={word.id} word={word} {...actions} />
           )}
         </ul>
-        {this.renderFooter(completedCount)}
+        {/* {this.renderFooter(completedCount)} */}
       </section>
     );
   }

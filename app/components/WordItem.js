@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import WordTextInput from './WordTextInput';
 import style from './WordItem.css';
+// import Button from 'react-bootstrap/Button';
 
 export default class WordItem extends Component {
 
@@ -51,26 +52,43 @@ export default class WordItem extends Component {
       element = (
         <WordTextInput
           text={word.text}
+          url={word.url}
           editing={this.state.editing}
           onSave={this.handleSave}
         />
       );
     } else {
       element = (
-        <div className={style.view}>
-          <input
-            className={style.toggle}
-            type="checkbox"
-            checked={word.completed}
-            onChange={this.handleComplete}
-          />
-          <label onDoubleClick={this.handleDoubleClick}>
-            {word.text}
-          </label>
-          <button
-            className={style.destroy}
-            onClick={this.handleDelete}
-          />
+        <div>
+          {/* <div className={style.view}> */}
+          <div style={{ }}>
+            <button
+                className={style.destroy}
+                onClick={this.handleDelete}
+              />
+              <text style={{fontSize: "10px",  "margin-left": "10px"}}>{word.created}</text>
+          </div>
+            {/* <input
+              className={style.toggle}
+              type="checkbox"
+              checked={word.completed}
+              onChange={this.handleComplete}
+            /> */}
+            {/* <label onDoubleClick={this.handleDoubleClick}>
+              {word.text}
+            </label> */}
+            <label>
+              {word.text}
+            </label>
+            {/* <a href={`javascript:(${word.url})`}>LINK</a> */}
+            {/* <a href={`javascript:openURL('${word.url}')`}> LINK </a> */}
+            {/* <input type="button" id="btnOpenNewTab" value="Click to open new tab"/> */}
+            {/* <button onClick={`openURL(${word.url})`}> LINK </button> */}
+              {/* <button id="linkBtn" value={word.url}> LINK </button> */}
+          
+          <div className="link" style={{paddingBottom: "5px"}}>
+            { word.url ? <a href={word.url} target="_blank" style={{ fontSize: "12px", "margin-left": "10px" }}> {word.url} </a> : <a>   </a> }
+          </div>
         </div>
       );
     }
@@ -78,9 +96,8 @@ export default class WordItem extends Component {
     return (
       <li
         className={classnames({
-          [style.completed]: word.completed,
-          [style.editing]: this.state.editing,
-          [style.normal]: !this.state.editing
+          [style.editing]: false,
+          [style.normal]: true
         })}
       >
         {element}

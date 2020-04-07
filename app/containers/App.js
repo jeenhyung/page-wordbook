@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 import * as WordActions from '../actions/words';
 import style from './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 @connect(
   state => ({

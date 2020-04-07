@@ -28,6 +28,7 @@ var actualCode = 'function btnClick() {'
                + '    alert(2);'
                + '    console.log("The state of the player has changed");'
                + '}';
+const iconBtnUrl = 'https://github.com/jeenhyung/page-wordbook/blob/master/chrome/assets/img/button-24.png?raw=true';
 
 //
 // const iconBtnDiv = document.createElement('div');
@@ -44,9 +45,15 @@ const iconBtn = document.createElement('button');
 function initiconBtn() {
   // iconBtn.setAttribute('class', 'iconbtn');
   iconBtn.setAttribute('id', 'iconbtn');
-  iconBtn.setAttribute('value', '저장');
+  iconBtn.setAttribute('value', 'save');
   iconBtn.style.visibility = 'hidden';
+  iconBtn.style.backgroundColor = 'transparent !important;';
+  iconBtn.style.padding = '0px';
+  iconBtn.style.borderWidth = '0px';
+  iconBtn.style.border = 'none';
   iconBtn.style.position = 'absolute';
+  iconBtn.style.color = '#FFFFFF';
+
   // iconBtn.setAttribute('onclick', 'btnClick();');
   // iconBtn.setAttribute.onclick = function(e) {
   //   alert(3);
@@ -62,7 +69,8 @@ function initiconBtn() {
     iconBtn.style.visibility = 'hidden';
   }, false);
 
-  iconBtn.innerHTML='<text>저장</text>';
+  iconBtn.innerHTML = '<img class="btn-img" src="'+ iconBtnUrl +'">';
+  // iconBtn.innerHTML='<text>저장</text>';
   // iconBtn.innerText='저장';
 }
 
@@ -88,7 +96,12 @@ function renderIconBtn(mouseX, mouseY) {
   iconBtn.style.top = `${mouseY}px`;
   iconBtn.style.left = `${mouseX}px`;
   iconBtn.style.visibility = 'visible';
+  iconBtn.style.backgroundColor = 'transparent';
+  iconBtn.style.padding = '0px';
+  iconBtn.style.borderWidth = '0px';
+  iconBtn.style.border = 'none';
   iconBtn.style.position = 'absolute';
+  iconBtn.style.color = '#FFFFFF';
 }
 
 function translateText(mouseX, mouseY, selection) {
@@ -101,7 +114,7 @@ document.addEventListener('mouseup', (e) => {
 
   console.log("document.addEventListener.mouseup() selection:" + JSON.stringify(selection));
   if (selection.length > 0) {
-    translateText(e.pageX - 20, e.pageY + 5, selection);
+    translateText(e.pageX - 40, e.pageY + 5, selection);
   }
 
 }, false);

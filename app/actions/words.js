@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
-export function addWord(text) {
-  return { type: types.ADD_WORD, text };
+export function addWord(text, url) {
+  return { type: types.ADD_WORD, text, url };
 }
 
 export function deleteWord(id) {

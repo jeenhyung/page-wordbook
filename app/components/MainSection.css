@@ -20,34 +20,34 @@
   border-bottom: none;
 }
 
-.wordList li.editing {
+/* .wordList li.editing {
   border-bottom: none;
   padding: 0;
-}
+} */
 
-.wordList li.editing .edit {
+/* .wordList li.editing .edit {
   display: block;
   width: 506px;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
-}
+} */
 
-.wordList li.editing .view {
+/* .wordList li.editing .view {
   display: none;
-}
+} */
 
 .wordList li .toggle {
-  text-align: center;
-  width: 40px;
+  /* text-align: center;
+  width: 40px; */
   /* auto, since non-WebKit browsers doesn't support input styling */
-  height: auto;
+  /* height: auto;
   position: absolute;
   top: 0;
   bottom: 0;
-  margin: auto 0;
+  margin: auto 0; */
   border: none; /* Mobile Safari */
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  /* -webkit-appearance: none;
+  -moz-appearance: none; */
 }
 
 .wordList li .toggle:after {
@@ -61,20 +61,20 @@
 .wordList li label {
   white-space: pre-line;
   word-break: break-all;
-  padding: 15px 60px 15px 15px;
-  margin-left: 45px;
+  /* padding: 15px 60px 15px 15px; */
+  margin-left: 10px;
   display: block;
   line-height: 1.2;
   transition: color 0.4s;
 }
 
-.wordList li.completed label {
+/* .wordList li.completed label {
   color: #d9d9d9;
   text-decoration: line-through;
-}
+} */
 
 .wordList li .destroy {
-  display: none;
+  /* display: none; */
   position: absolute;
   top: 0;
   right: 10px;
@@ -85,48 +85,48 @@
   font-size: 30px;
   color: #cc9a9a;
   margin-bottom: 11px;
-  transition: color 0.2s ease-out;
+  /* transition: color 0.2s ease-out; */
 }
 
 .wordList li .destroy:hover {
-  color: #af5b5e;
+  /* color: #af5b5e; */
 }
 
 .wordList li .destroy:after {
-  content: '×';
+  /* content: '×'; */
 }
 
 .wordList li:hover .destroy {
-  display: block;
+  /* display: block; */
 }
 
 .wordList li .edit {
-  display: none;
+  /* display: none; */
 }
 
 .wordList li.editing:last-child {
-  margin-bottom: -1px;
+  /* margin-bottom: -1px; */
 }
 
 .toggleAll {
-  position: absolute;
+  /* position: absolute;
   top: -55px;
   left: -12px;
   width: 60px;
   height: 34px;
-  text-align: center;
-  border: none; /* Mobile Safari */
+  text-align: center; */
+  /* border: none; Mobile Safari */
 }
 
 .toggleAll:before {
-  content: '❯';
+  /* content: '❯';
   font-size: 22px;
   color: #e6e6e6;
-  padding: 10px 27px 10px 27px;
+  padding: 10px 27px 10px 27px; */
 }
 
 .toggleAll:checked:before {
-  color: #737373;
+  /* color: #737373; */
 }
 
 /*
@@ -134,18 +134,18 @@
   Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  .toggleAll,
+  /* .toggleAll,
   .wordList li .toggle {
     background: none;
-  }
+  } */
 
   .wordList li .toggle {
     height: 40px;
   }
 
-  .toggleAll {
+  /* .toggleAll {
     transform: rotate(90deg);
     -webkit-appearance: none;
     -moz-appearance: none;
-  }
+  } */
 }
